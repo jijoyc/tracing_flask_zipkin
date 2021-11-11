@@ -4,9 +4,12 @@ from py_zipkin.zipkin import zipkin_span, create_http_headers_for_new_span, Zipk
 from py_zipkin.request_helpers import create_http_headers
 from py_zipkin.encoding import Encoding
 import time
+from flask_zipkin import Zipkin
 
 
-app = Flask(__name__)
+app = Flask("api_02")
+zipkin = Zipkin(app, sample_rate=10)
+app.config['ZIPKIN_DSN'] = "http://127.0.0.1:9411/api/v1/spans"
 
 
 def default_handler(encoded_span):
@@ -31,9 +34,9 @@ def log_request_info():
     app.logger.debug('Body: %s', request.get_data())
 
 
-@zipkin_client_span(service_name='api_02', span_name='call_api_03')
+# @zipkin_client_span(service_name='api_02', span_name='call_api_03')
 def call_api_03():
-    headers = create_http_headers()
+    headers = create_http_headers_for_new_span()
     requests.get('http://api_03:5000/', headers=headers)
     return 'OK'
 

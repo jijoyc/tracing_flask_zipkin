@@ -1,3 +1,4 @@
 flask==1.1.1
 requests
-py_zipkin
+py_zipkin==0.20.0
+flask_zipkin

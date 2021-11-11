@@ -1,6 +1,7 @@
 ## About:
 
 This repo contains a demo of how to trace requests from Flask APIs using Zipkin.
+Making some changes so that PEP8 tests can run
 
 ## Run the demo
 
