@@ -8,7 +8,7 @@ from flask_zipkin import Zipkin
 app = Flask("api_01")
 zipkin = Zipkin(app, sample_rate=10)
 app.config['ZIPKIN_DSN'] = "http://127.0.0.1:9411/api/v1/spans"
-print(app.name)
+print( app.name    )
 
 
 
